@@ -8,11 +8,13 @@ import typer
 
 from tc import __version__
 from tc.cli.commands.dashboard_cmd import dashboard_command
+from tc.cli.commands.history_cmd import history_command
 from tc.cli.commands.init_cmd import init_command
 from tc.cli.commands.kill_cmd import kill_command
 from tc.cli.commands.mcp_cmd import mcp_server_command
 from tc.cli.commands.pause_cmd import pause_command, resume_command
 from tc.cli.commands.plan_cmd import plan_command
+from tc.cli.commands.reset_cmd import reset_command
 from tc.cli.commands.retry_cmd import retry_command
 from tc.cli.commands.run_cmd import run_command
 from tc.cli.commands.status_cmd import status_command
@@ -53,6 +55,8 @@ app.command("retry")(retry_command)
 app.command("kill")(kill_command)
 app.command("mcp-server", hidden=True)(mcp_server_command)
 app.command("dashboard")(dashboard_command)
+app.command("history")(history_command)
+app.command("reset")(reset_command)
 
 
 def main() -> None:
