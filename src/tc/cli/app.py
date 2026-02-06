@@ -9,6 +9,7 @@ import typer
 from tc import __version__
 from tc.cli.commands.init_cmd import init_command
 from tc.cli.commands.kill_cmd import kill_command
+from tc.cli.commands.mcp_cmd import mcp_server_command
 from tc.cli.commands.pause_cmd import pause_command, resume_command
 from tc.cli.commands.plan_cmd import plan_command
 from tc.cli.commands.retry_cmd import retry_command
@@ -49,6 +50,7 @@ app.command("pause")(pause_command)
 app.command("resume")(resume_command)
 app.command("retry")(retry_command)
 app.command("kill")(kill_command)
+app.command("mcp-server", hidden=True)(mcp_server_command)
 
 
 @app.command("dashboard")
