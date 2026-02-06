@@ -7,6 +7,7 @@ from typing import Optional
 import typer
 
 from tc import __version__
+from tc.cli.commands.dashboard_cmd import dashboard_command
 from tc.cli.commands.init_cmd import init_command
 from tc.cli.commands.kill_cmd import kill_command
 from tc.cli.commands.mcp_cmd import mcp_server_command
@@ -51,13 +52,7 @@ app.command("resume")(resume_command)
 app.command("retry")(retry_command)
 app.command("kill")(kill_command)
 app.command("mcp-server", hidden=True)(mcp_server_command)
-
-
-@app.command("dashboard")
-def dashboard_command_stub() -> None:
-    """Launch TUI dashboard. (Not yet implemented)"""
-    typer.echo("Not yet implemented")
-    raise typer.Exit(code=1)
+app.command("dashboard")(dashboard_command)
 
 
 def main() -> None:

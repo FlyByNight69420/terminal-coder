@@ -1,0 +1,73 @@
+Screen {
+    layout: grid;
+    grid-size: 2 2;
+    grid-columns: 2fr 3fr;
+    grid-rows: 1fr 1fr;
+}
+
+#phase-tree {
+    row-span: 2;
+    border: solid $primary;
+    padding: 0 1;
+}
+
+#session-panel {
+    border: solid $secondary;
+    padding: 0 1;
+}
+
+#log-panel {
+    border: solid $accent;
+    padding: 0 1;
+}
+
+Header {
+    dock: top;
+    height: 3;
+    background: $surface;
+    color: $text;
+    content-align: center middle;
+}
+
+Footer {
+    dock: bottom;
+    height: 1;
+}
+
+.status-running {
+    color: $warning;
+}
+
+.status-completed {
+    color: $success;
+}
+
+.status-failed {
+    color: $error;
+}
+
+.status-paused {
+    color: $warning;
+}
+
+.status-pending {
+    color: $text-muted;
+}
+
+.badge-coding {
+    background: $primary;
+    color: $text;
+    padding: 0 1;
+}
+
+.badge-review {
+    background: $secondary;
+    color: $text;
+    padding: 0 1;
+}
+
+.badge-security {
+    background: $warning;
+    color: $text;
+    padding: 0 1;
+}
