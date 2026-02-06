@@ -8,6 +8,7 @@ import typer
 
 from tc import __version__
 from tc.cli.commands.init_cmd import init_command
+from tc.cli.commands.plan_cmd import plan_command
 from tc.cli.commands.status_cmd import status_command
 from tc.cli.commands.verify_cmd import verify_command
 
@@ -38,13 +39,7 @@ def _main(
 app.command("init")(init_command)
 app.command("status")(status_command)
 app.command("verify")(verify_command)
-
-
-@app.command("plan")
-def plan_command_stub() -> None:
-    """Decompose PRD into phases and tasks. (Not yet implemented)"""
-    typer.echo("Not yet implemented")
-    raise typer.Exit(code=1)
+app.command("plan")(plan_command)
 
 
 @app.command("run")

@@ -1,0 +1,76 @@
+# Task Brief: {{ task.name }}
+
+**Task ID:** {{ task.id }}
+**Phase:** {{ phase.name }} ({{ phase.sequence }}/{{ total_phases }})
+**Type:** {{ task.task_type }}
+
+---
+
+## MCP Communication
+
+You have access to the following MCP tools for reporting progress:
+
+- `tc_report_progress(task_id="{{ task.id }}", status, message)` - Report progress updates
+- `tc_report_completion(task_id="{{ task.id }}", summary, files_changed, test_results)` - Report task completion
+- `tc_report_failure(task_id="{{ task.id }}", error_type, error_message, attempted_fixes)` - Report failures
+- `tc_get_context(task_id="{{ task.id }}")` - Get context about completed work
+
+---
+
+## Objective
+
+{{ task.description }}
+
+---
+
+## Context
+
+### Project Overview
+{{ project_overview }}
+
+{% if completed_tasks %}
+### Previously Completed Work
+{% for ct in completed_tasks %}
+- **{{ ct.name }}** ({{ ct.task_type }}): {{ ct.description | truncate(120) }}
+{% endfor %}
+{% endif %}
+
+{% if review_findings %}
+### Review Findings to Address
+{% for finding in review_findings %}
+- {{ finding }}
+{% endfor %}
+{% endif %}
+
+---
+
+## Requirements
+
+{% if acceptance_criteria %}
+### Acceptance Criteria
+{% for criterion in acceptance_criteria %}
+- [ ] {{ criterion }}
+{% endfor %}
+{% endif %}
+
+### Technical Constraints
+- Follow the project's CLAUDE.md coding standards
+- Write tests first (TDD), aim for 80%+ coverage on new code
+- Keep files under 400 lines (800 max)
+- Use immutable data structures where possible
+
+{% if relevant_files %}
+### Relevant Files
+{% for f in relevant_files %}
+- `{{ f }}`
+{% endfor %}
+{% endif %}
+
+---
+
+## Completion
+
+When finished, call `tc_report_completion` with:
+- A summary of what was implemented
+- List of files changed
+- Test results (pass/fail count)

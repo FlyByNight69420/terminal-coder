@@ -1,0 +1,70 @@
+{
+  "project_name": "todo-api",
+  "claude_md": "# Todo API\n\n## Build/Test Commands\n- Install: `npm install`\n- Test: `npm test`\n- Lint: `npm run lint`\n\n## Code Style\n- TypeScript strict mode\n- ESLint + Prettier\n\n## Architecture\n- Express.js REST API\n- SQLite database\n- JWT authentication\n\n## Testing\n- Jest for unit tests\n- Supertest for integration tests\n",
+  "phases": [
+    {
+      "name": "Project Setup",
+      "description": "Initialize project structure and configuration",
+      "tasks": [
+        {
+          "name": "Initialize project",
+          "description": "Create package.json, tsconfig.json, install dependencies, set up project structure with src/ and tests/ directories",
+          "task_type": "coding",
+          "depends_on": [],
+          "acceptance_criteria": ["package.json exists", "TypeScript compiles", "Basic test runs"],
+          "relevant_files": ["package.json", "tsconfig.json"]
+        }
+      ]
+    },
+    {
+      "name": "Core API",
+      "description": "Implement CRUD endpoints for todo items",
+      "tasks": [
+        {
+          "name": "Database schema",
+          "description": "Create SQLite database schema for todos table with id, title, completed, created_at columns",
+          "task_type": "coding",
+          "depends_on": ["Initialize project"],
+          "acceptance_criteria": ["Migration runs successfully", "Schema test passes"],
+          "relevant_files": ["src/db/schema.ts"]
+        },
+        {
+          "name": "CRUD endpoints",
+          "description": "Implement GET/POST/PUT/DELETE endpoints for /api/todos with input validation",
+          "task_type": "coding",
+          "depends_on": ["Database schema"],
+          "acceptance_criteria": ["All CRUD operations work", "Input validation present", "Integration tests pass"],
+          "relevant_files": ["src/routes/todos.ts", "src/middleware/validate.ts"]
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "description": "Add JWT-based authentication",
+      "tasks": [
+        {
+          "name": "Auth middleware",
+          "description": "Implement JWT authentication middleware and user registration/login endpoints",
+          "task_type": "coding",
+          "depends_on": ["CRUD endpoints"],
+          "acceptance_criteria": ["JWT tokens issued on login", "Protected routes require valid token"],
+          "relevant_files": ["src/middleware/auth.ts", "src/routes/auth.ts"]
+        }
+      ]
+    },
+    {
+      "name": "Deployment",
+      "description": "Deploy the application",
+      "tasks": [
+        {
+          "name": "Docker setup",
+          "description": "Create Dockerfile and docker-compose.yml for the application",
+          "task_type": "deployment",
+          "depends_on": ["Auth middleware"],
+          "acceptance_criteria": ["Docker builds successfully", "Container runs and serves API"],
+          "relevant_files": ["Dockerfile", "docker-compose.yml"]
+        }
+      ]
+    }
+  ]
+}

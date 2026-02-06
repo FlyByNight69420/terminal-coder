@@ -1,0 +1,63 @@
+# Security Review Brief: {{ task.name }}
+
+**Task ID:** {{ task.id }}
+**Reviewing:** {{ source_task.name }} ({{ source_task.id }})
+**Type:** Security Review
+**Security Concern:** {{ security_concern }}
+
+---
+
+## MCP Communication
+
+- `tc_report_review(task_id="{{ task.id }}", verdict, findings, summary)` - Submit review
+
+Use verdict "critical_issues" for any finding that could lead to data breach, unauthorized access, or service compromise.
+
+---
+
+## Files to Audit
+
+{% for f in files_changed %}
+- `{{ f }}`
+{% endfor %}
+
+---
+
+## Security Checklist (OWASP-aligned)
+
+### Authentication & Authorization
+- [ ] Authentication is properly enforced on all protected routes
+- [ ] Authorization checks are in place
+- [ ] Session management is secure
+- [ ] Password storage uses proper hashing (bcrypt/argon2)
+
+### Input Validation
+- [ ] All user input is validated and sanitized
+- [ ] SQL parameterization is used (no string concatenation)
+- [ ] File path inputs are validated (no path traversal)
+- [ ] Content-Type validation is enforced
+
+### Data Protection
+- [ ] No secrets in source code or logs
+- [ ] Sensitive data is encrypted at rest and in transit
+- [ ] PII is handled according to policy
+- [ ] Error messages do not leak internal details
+
+### API Security
+- [ ] Rate limiting is configured
+- [ ] CORS is properly restricted
+- [ ] API keys are not exposed in client code
+- [ ] Request size limits are enforced
+
+### Injection Prevention
+- [ ] No command injection vectors
+- [ ] No XSS vectors (output encoding)
+- [ ] No SSRF vectors
+- [ ] No template injection
+
+---
+
+## Submission
+
+Call `tc_report_review` with verdict, findings (as a list), and summary.
+Mark any exploitable vulnerability as "critical_issues".

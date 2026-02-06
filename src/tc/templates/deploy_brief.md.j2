@@ -1,0 +1,56 @@
+# Deployment Brief: {{ task.name }}
+
+**Task ID:** {{ task.id }}
+**Phase:** {{ phase.name }}
+**Type:** Deployment
+
+---
+
+## MCP Communication
+
+- `tc_report_progress(task_id="{{ task.id }}", status, message)` - Report progress
+- `tc_report_completion(task_id="{{ task.id }}", summary, files_changed)` - Report completion
+- `tc_report_failure(task_id="{{ task.id }}", error_type, error_message)` - Report failure
+
+---
+
+## Deployment Objective
+
+{{ task.description }}
+
+---
+
+{% if deployment_steps %}
+## Deployment Steps
+
+{% for step in deployment_steps %}
+{{ loop.index }}. {{ step }}
+{% endfor %}
+{% endif %}
+
+---
+
+{% if verification_steps %}
+## Verification Steps
+
+After deployment, verify:
+
+{% for step in verification_steps %}
+- [ ] {{ step }}
+{% endfor %}
+{% endif %}
+
+---
+
+## Rollback Plan
+
+If deployment fails:
+1. Report failure via `tc_report_failure` with error details
+2. Do NOT attempt automated rollback unless explicitly instructed
+3. Document what state the deployment is in
+
+---
+
+## Completion
+
+Call `tc_report_completion` with deployment status and any verification results.

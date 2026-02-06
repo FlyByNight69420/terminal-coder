@@ -1,0 +1,45 @@
+You are a project planning specialist. Analyze the following PRD (Product Requirements Document) and decompose it into implementation phases and tasks.
+
+# PRD Content
+
+{{ prd_content }}
+
+# Instructions
+
+Decompose the PRD into phases and tasks following these rules:
+
+1. Each phase groups related work (e.g., "Core API", "Authentication", "Deployment")
+2. Each task should be completable in a single Claude Code session (roughly 30 minutes of context budget)
+3. Break large features into multiple smaller tasks
+4. Include cross-cutting tasks in Phase 1 (project setup, shared types, configuration)
+5. Include deployment and verification phases at the end
+6. Establish task dependencies where one task must complete before another can start
+7. Each task description should be detailed enough for an AI coding agent to implement independently
+
+# Required Output Format
+
+Return ONLY a JSON object (no markdown code fences) with this exact structure:
+
+{
+  "project_name": "short-kebab-case-name",
+  "claude_md": "Full CLAUDE.md content with Build/Test Commands, Code Style, Architecture, and Testing sections",
+  "phases": [
+    {
+      "name": "Phase name",
+      "description": "What this phase accomplishes",
+      "tasks": [
+        {
+          "name": "Task name",
+          "description": "Detailed description of what to implement, including acceptance criteria",
+          "task_type": "coding",
+          "depends_on": [],
+          "acceptance_criteria": ["criterion 1", "criterion 2"],
+          "relevant_files": ["src/path/file.py"]
+        }
+      ]
+    }
+  ]
+}
+
+Valid task_type values: coding, deployment, verification
+The depends_on array should contain task names from earlier phases/tasks that must be completed first.

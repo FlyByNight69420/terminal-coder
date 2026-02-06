@@ -1,0 +1,60 @@
+# Code Review Brief: {{ task.name }}
+
+**Task ID:** {{ task.id }}
+**Reviewing:** {{ source_task.name }} ({{ source_task.id }})
+**Type:** Code Review
+
+---
+
+## MCP Communication
+
+- `tc_report_review(task_id="{{ task.id }}", verdict, findings, summary)` - Submit review
+
+Verdict options: "approved", "changes_requested", "critical_issues"
+
+---
+
+## Source Task
+
+**{{ source_task.name }}**: {{ source_task.description | truncate(200) }}
+
+---
+
+## Files to Review
+
+{% for f in files_changed %}
+- `{{ f }}`
+{% endfor %}
+
+---
+
+## Review Checklist
+
+### Code Quality
+- [ ] Code is readable and well-structured
+- [ ] Functions are focused and under 50 lines
+- [ ] No dead code or commented-out code
+- [ ] Naming is clear and consistent
+
+### Testing
+- [ ] Tests exist for new functionality
+- [ ] Tests cover edge cases
+- [ ] Test coverage is adequate (80%+)
+
+### Architecture
+- [ ] Changes follow established patterns
+- [ ] No unnecessary coupling between modules
+- [ ] Immutability is maintained where expected
+
+### Security (if applicable)
+- [ ] No hardcoded secrets
+- [ ] Input validation is present
+- [ ] No SQL injection vectors
+- [ ] No XSS vectors
+
+---
+
+## Submission
+
+Call `tc_report_review` with your verdict, a list of findings, and a summary.
+If there are critical security issues, use verdict "critical_issues".
