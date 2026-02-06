@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import typer
 
 from tc import __version__
@@ -23,7 +21,8 @@ from tc.cli.commands.verify_cmd import verify_command
 app = typer.Typer(
     name="tc",
     help="Terminal Coder - Autonomous software building orchestrator using Claude Code",
-    no_args_is_help=True,
+    no_args_is_help=False,
+    invoke_without_command=True,
 )
 
 
@@ -33,14 +32,19 @@ def _version_callback(value: bool) -> None:
         raise typer.Exit()
 
 
-@app.callback()
+@app.callback(invoke_without_command=True)
 def _main(
-    version: Optional[bool] = typer.Option(
+    ctx: typer.Context,
+    version: bool | None = typer.Option(
         None, "--version", "-V", callback=_version_callback, is_eager=True,
         help="Show version and exit.",
     ),
 ) -> None:
     """Terminal Coder - Autonomous software building orchestrator using Claude Code."""
+    if ctx.invoked_subcommand is None:
+        from tc.tui.onboarding.app import OnboardingApp
+
+        OnboardingApp().run()
 
 
 # Register commands

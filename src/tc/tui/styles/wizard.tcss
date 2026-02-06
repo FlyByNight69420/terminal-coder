@@ -1,0 +1,233 @@
+/* Onboarding wizard styles */
+
+/* Base screen layout */
+WelcomeScreen, ProjectSetupScreen, PrdFileScreen,
+BootstrapFileScreen, ReviewScreen, ProgressScreen, SuccessScreen {
+    align: center middle;
+}
+
+/* Main card container used across all screens */
+.wizard-card {
+    width: 72;
+    max-width: 90%;
+    border: round $primary;
+    background: $surface;
+    padding: 2 4;
+}
+
+/* Step indicator bar at top of each card */
+.wizard-step-bar {
+    height: 1;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+/* Screen titles */
+.wizard-title {
+    text-align: center;
+    text-style: bold;
+    color: $text;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+/* Subtitle / description text */
+.wizard-subtitle {
+    text-align: center;
+    color: $text-muted;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+/* ASCII art logo on welcome screen */
+.wizard-logo {
+    text-align: center;
+    color: $primary;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+/* Input fields */
+.wizard-input {
+    width: 100%;
+    margin-bottom: 1;
+}
+
+.wizard-input:focus {
+    border: tall $primary;
+}
+
+/* Labels for inputs */
+.wizard-label {
+    width: 100%;
+    margin-bottom: 0;
+    color: $text;
+    text-style: bold;
+}
+
+/* Validation error text */
+.wizard-error {
+    color: $error;
+    width: 100%;
+    margin-bottom: 1;
+    display: none;
+}
+
+.wizard-error.visible {
+    display: block;
+}
+
+/* Hint / helper text */
+.wizard-hint {
+    color: $text-muted;
+    width: 100%;
+    margin-bottom: 1;
+    text-style: italic;
+}
+
+/* Button bar at bottom of cards */
+.wizard-buttons {
+    width: 100%;
+    height: auto;
+    align: center middle;
+    margin-top: 1;
+}
+
+.wizard-buttons Button {
+    margin: 0 1;
+}
+
+/* Primary action button */
+.wizard-btn-primary {
+    background: $primary;
+}
+
+/* Secondary / back button */
+.wizard-btn-secondary {
+    background: $surface;
+    border: solid $primary;
+}
+
+/* Skip button (lighter style) */
+.wizard-btn-skip {
+    background: $surface;
+    border: solid $secondary;
+    color: $text-muted;
+}
+
+/* Review screen summary table */
+.review-table {
+    width: 100%;
+    margin-bottom: 1;
+}
+
+.review-row {
+    width: 100%;
+    height: auto;
+    layout: horizontal;
+    margin-bottom: 0;
+}
+
+.review-key {
+    width: 20;
+    text-style: bold;
+    color: $text-muted;
+}
+
+.review-value {
+    width: 1fr;
+    color: $text;
+}
+
+/* Progress screen step items */
+.progress-step {
+    width: 100%;
+    height: auto;
+    layout: horizontal;
+    margin-bottom: 0;
+}
+
+.progress-icon {
+    width: 4;
+    text-align: center;
+}
+
+.progress-label {
+    width: 1fr;
+}
+
+.progress-icon.pending {
+    color: $text-muted;
+}
+
+.progress-icon.running {
+    color: $warning;
+}
+
+.progress-icon.done {
+    color: $success;
+}
+
+.progress-icon.error {
+    color: $error;
+}
+
+/* Success screen */
+.success-check {
+    text-align: center;
+    color: $success;
+    text-style: bold;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+.success-commands {
+    width: 100%;
+    margin-top: 1;
+    padding: 1 2;
+    background: $panel;
+    border: round $success;
+}
+
+.success-command {
+    width: 100%;
+    color: $text;
+    margin-bottom: 0;
+}
+
+/* Key hint at bottom */
+.wizard-keyhint {
+    text-align: center;
+    color: $text-muted;
+    width: 100%;
+    margin-top: 1;
+}
+
+/* PRD screen sections */
+#prd-choice, #prd-manual, #prd-generate {
+    width: 100%;
+    height: auto;
+}
+
+/* TextArea for idea input */
+.wizard-textarea {
+    width: 100%;
+    height: 8;
+    margin-bottom: 1;
+}
+
+.wizard-textarea:focus {
+    border: tall $primary;
+}
+
+/* OptionList for choice screens */
+.wizard-options {
+    width: 100%;
+    height: auto;
+    max-height: 6;
+    margin-bottom: 1;
+}
+
+.wizard-options:focus {
+    border: tall $primary;
+}
